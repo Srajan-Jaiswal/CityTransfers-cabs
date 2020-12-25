@@ -1,8 +1,8 @@
+import 'package:citytransfers_cabs/screens/loginpage.dart';
 import 'package:flutter/material.dart';
+import 'package:citytransfers_cabs/screens/mainpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:io';
-import 'mainpage.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final FirebaseApp app = await Firebase.initializeApp(
@@ -23,10 +23,7 @@ Future<void> main() async {
             databaseURL: 'https://citytransfers-92e25-default-rtdb.firebaseio.com',
           ),
   );
-  runApp(MaterialApp(
-    title: 'Flutter Database Example',
-    home: MainPage(),
-  ));
+  runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
   @override
@@ -36,7 +33,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainPage(),
+      home: LoginPage(),
     );
   }
 }
