@@ -13,26 +13,31 @@ class LoginPage extends StatelessWidget {
           brightness: Brightness.light,
         ),
         backgroundColor: Colors.white,
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           children: <Widget>[
             SizedBox(
               height: 70,
             ),
-
-            /*Image(
-         alignment: Alignment.center,
-         height: 100.0,
-         width: 100.0,
-         //image: AssetImage(), 
-        ),*/
-
+            ClipOval(
+              child: Image(
+                image: AssetImage('images/logo.jpg'),
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
             SizedBox(
-              height: 140,
+              height: 40,
             ),
             Text(
               'Sign In as Rider',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 25, fontFamily: 'Brand-Bold'),
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Brand-Bold',
+                  color: Colors.black),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -114,6 +119,6 @@ class LoginPage extends StatelessWidget {
               ],
             ),
           ],
-        ));
+        )));
   }
 }
