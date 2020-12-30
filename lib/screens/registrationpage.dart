@@ -155,7 +155,11 @@ class RegistrationPage extends StatelessWidget {
               width: 300,
               height: 50,
               child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                   registerUser();
+
+                  },
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(130),
                   ),
