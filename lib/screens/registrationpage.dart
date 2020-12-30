@@ -16,15 +16,14 @@ class RegistrationPage extends StatelessWidget {
   var passwordController = TextEditingController();
 
   void registerUser() async {
-    // ignore: deprecated_member_use
-    final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text)).user;
-    if(user != null)
-  {
-    print('registration successfull');
+    final user = (await _auth.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text))
+        .user;
+    if (user != null) {
+      print('registration successfull');
+    }
   }
 
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,9 +155,7 @@ class RegistrationPage extends StatelessWidget {
               height: 50,
               child: RaisedButton(
                   onPressed: () {
-
-                   registerUser();
-
+                    registerUser();
                   },
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(130),
