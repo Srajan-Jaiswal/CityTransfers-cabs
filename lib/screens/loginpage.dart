@@ -1,7 +1,11 @@
+import 'package:citytransfers_cabs/screens/registrationpage.dart';
 import 'package:flutter/material.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 
 class LoginPage extends StatelessWidget {
+
+ static const String id = 'login';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +114,9 @@ class LoginPage extends StatelessWidget {
                 Text("Don't have an account?",
                     style: TextStyle(fontSize: 15.5, color: Colors.black)),
                 GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(context, RegistrationPage.id, (route) => false);
+                    },
                     child: Text("  Sign Up",
                         style: TextStyle(
                             fontSize: 16.5,

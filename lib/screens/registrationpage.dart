@@ -1,7 +1,11 @@
+import 'package:citytransfers_cabs/screens/loginpage.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationPage extends StatelessWidget {
+
+  static const String id = 'register'; 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,12 +83,10 @@ class RegistrationPage extends StatelessWidget {
                         )),
                     style: TextStyle(fontSize: 14),
                   ),
-
-SizedBox(
-              height: 10,
-            ),
-
-TextField(
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Phone number",
@@ -120,13 +122,6 @@ TextField(
                         )),
                     style: TextStyle(fontSize: 14),
                   ),
-
-
-
-
-
-
-
                 ],
               ),
             ),
@@ -158,7 +153,9 @@ TextField(
                 Text("Already have an account?",
                     style: TextStyle(fontSize: 15.5, color: Colors.black)),
                 GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
+                    },
                     child: Text("  Log in",
                         style: TextStyle(
                             fontSize: 16.5,
