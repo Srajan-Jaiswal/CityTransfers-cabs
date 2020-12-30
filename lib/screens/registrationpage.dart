@@ -1,11 +1,30 @@
 import 'package:citytransfers_cabs/screens/loginpage.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationPage extends StatelessWidget {
+  static const String id = 'register';
 
-  static const String id = 'register'; 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
+// Text controllers  for the text inputs
+
+  var fullNameController = TextEditingController();
+  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
+  var passwordController = TextEditingController();
+
+  void registerUser() async {
+    // ignore: deprecated_member_use
+    final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)).user;
+    if(user != null)
+  {
+    print('registration successfull');
+  }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +67,7 @@ class RegistrationPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    controller: fullNameController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Full name",
@@ -67,6 +87,7 @@ class RegistrationPage extends StatelessWidget {
                     height: 10,
                   ),
                   TextField(
+                    controller: emailController,
                     obscureText: true,
                     decoration: InputDecoration(
                         hintText: "Email address",
@@ -87,6 +108,7 @@ class RegistrationPage extends StatelessWidget {
                     height: 10,
                   ),
                   TextField(
+                    controller: phoneController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Phone number",
@@ -106,6 +128,7 @@ class RegistrationPage extends StatelessWidget {
                     height: 10,
                   ),
                   TextField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         hintText: "Password",
@@ -128,22 +151,27 @@ class RegistrationPage extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            RaisedButton(
-                onPressed: () {},
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(130),
-                ),
-                color: Colors.purpleAccent,
-                textColor: Colors.black,
-                child: Container(
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
-                    ),
+            SizedBox(
+              width: 300,
+              height: 50,
+              child: RaisedButton(
+                  onPressed: () {},
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(130),
                   ),
-                )),
+                  color: Colors.purpleAccent,
+                  textColor: Colors.black,
+                  child: Container(
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        'Sign Up',
+                        style:
+                            TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
+                      ),
+                    ),
+                  )),
+            ),
             SizedBox(
               height: 15,
             ),
@@ -154,7 +182,8 @@ class RegistrationPage extends StatelessWidget {
                     style: TextStyle(fontSize: 15.5, color: Colors.black)),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, LoginPage.id, (route) => false);
                     },
                     child: Text("  Log in",
                         style: TextStyle(

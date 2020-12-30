@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 
 class LoginPage extends StatelessWidget {
-
- static const String id = 'login';
+  static const String id = 'login';
 
   @override
   Widget build(BuildContext context) {
@@ -87,24 +86,29 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 30,
             ),
-            RaisedButton(
-                onPressed: () {},
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(130),
-                ),
-                color: Colors.purpleAccent,
-                textColor: Colors.black,
-                child: Container(
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
-                    ),
+            SizedBox(
+              width: 300,
+              height: 50.0,
+              child: RaisedButton(
+                  onPressed: () {},
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(130),
                   ),
-                )),
+                  color: Colors.purpleAccent,
+                  textColor: Colors.black,
+                  child: Container(
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        'LOGIN',
+                        style:
+                            TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
+                      ),
+                    ),
+                  )),
+            ),
             SizedBox(
               height: 30,
             ),
@@ -115,7 +119,8 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(fontSize: 15.5, color: Colors.black)),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(context, RegistrationPage.id, (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, RegistrationPage.id, (route) => false);
                     },
                     child: Text("  Sign Up",
                         style: TextStyle(
