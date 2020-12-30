@@ -1,45 +1,75 @@
 import 'package:citytransfers_cabs/screens/loginpage.dart';
+import 'package:citytransfers_cabs/screens/mainpage.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   static const String id = 'register';
 
-  // for showing display snack bar.
-  final  GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+  @override
+  _RegistrationPageState createState() => _RegistrationPageState();
+}
 
-  void showSnackBar(String title){
+class _RegistrationPageState extends State<RegistrationPage> {
+  final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+
+  void showSnackBar(String title) {
     final snackbar = SnackBar(
-      content: Text(title, textAlign: TextAlign.center,style: TextStyle(fontSize: 15),),
+      content: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 15),
+      ),
     );
     scaffoldkey.currentState.showSnackBar(snackbar);
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-// Text controllers  for the text inputs
-
   var fullNameController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var phoneController = TextEditingController();
+
   var passwordController = TextEditingController();
 
   void registerUser() async {
-    final user = (await _auth.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text))
+    final user = (await _auth
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text)
+            .catchError((ex) {
+      PlatformException thisEx = ex;
+      showSnackBar(thisEx.message);
+    }))
         .user;
+
     if (user != null) {
-      print('registration successfull');
+      DatabaseReference newUserRef =
+          FirebaseDatabase.instance.reference().child('users/${user.uid}');
+
+      // data saved into the users table
+      Map userMap = {
+        'fullname': fullNameController.text,
+        'email': emailController.text,
+        'phone': phoneController.text,
+      };
+
+      newUserRef.set(userMap);
+
+      // taking user  to  the mainPage
+
+      Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
     }
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         key: scaffoldkey,
         appBar: AppBar(
           title: appBar(context),
@@ -168,25 +198,29 @@ class RegistrationPage extends StatelessWidget {
               width: 300,
               height: 50,
               child: RaisedButton(
-                  onPressed: () {
+                  onPressed: () async{
                     // we have to  check  for the network  availability
-                    if(fullNameController.text.length < 3)
+                    
+                    var connectivityResult = await Connectivity().checkConnectivity();
+                    if(connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi)
                     {
+                      showSnackBar("No internet connection");
+                      return;
+                    } 
+                    
+                    if (fullNameController.text.length < 3) {
                       showSnackBar("Provide valid name");
                       return;
                     }
-                    if(phoneController.text.length < 10)
-                    {
+                    if (phoneController.text.length < 10) {
                       showSnackBar("Provide valid phone number");
                       return;
                     }
-                    if(!emailController.text.contains('@'))
-                    {
+                    if (!emailController.text.contains('@')) {
                       showSnackBar("Provide valid email address");
                       return;
                     }
-                    if(passwordController.text.length < 8)
-                    {
+                    if (passwordController.text.length < 8) {
                       showSnackBar("Provide atleast 8 digit password");
                       return;
                     }
