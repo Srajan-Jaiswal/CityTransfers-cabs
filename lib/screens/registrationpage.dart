@@ -6,6 +6,16 @@ import 'package:flutter/material.dart';
 class RegistrationPage extends StatelessWidget {
   static const String id = 'register';
 
+  // for showing display snack bar.
+  final  GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+
+  void showSnackBar(String title){
+    final snackbar = SnackBar(
+      content: Text(title, textAlign: TextAlign.center,style: TextStyle(fontSize: 15),),
+    );
+    scaffoldkey.currentState.showSnackBar(snackbar);
+  }
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
 // Text controllers  for the text inputs
@@ -22,11 +32,15 @@ class RegistrationPage extends StatelessWidget {
     if (user != null) {
       print('registration successfull');
     }
+
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+        key: scaffoldkey,
         appBar: AppBar(
           title: appBar(context),
           centerTitle: true,
@@ -155,6 +169,27 @@ class RegistrationPage extends StatelessWidget {
               height: 50,
               child: RaisedButton(
                   onPressed: () {
+                    // we have to  check  for the network  availability
+                    if(fullNameController.text.length < 3)
+                    {
+                      showSnackBar("Provide valid name");
+                      return;
+                    }
+                    if(phoneController.text.length < 10)
+                    {
+                      showSnackBar("Provide valid phone number");
+                      return;
+                    }
+                    if(!emailController.text.contains('@'))
+                    {
+                      showSnackBar("Provide valid email address");
+                      return;
+                    }
+                    if(passwordController.text.length < 8)
+                    {
+                      showSnackBar("Provide atleast 8 digit password");
+                      return;
+                    }
                     registerUser();
                   },
                   shape: new RoundedRectangleBorder(
