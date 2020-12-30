@@ -1,4 +1,5 @@
 import 'package:citytransfers_cabs/screens/loginpage.dart';
+import 'package:citytransfers_cabs/screens/registrationpage.dart';
 import 'package:flutter/material.dart';
 import 'package:citytransfers_cabs/screens/mainpage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(),
+      home: RegistrationPage(),
     );
   }
 }

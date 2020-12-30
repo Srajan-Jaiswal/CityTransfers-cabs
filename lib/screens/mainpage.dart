@@ -25,7 +25,6 @@ class _MainPageState extends State<MainPage> {
           child: Text('Testing Connection'),
         ),
       )
-      
     );
   }
 }
