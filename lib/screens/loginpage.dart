@@ -35,7 +35,7 @@ scaffoldKey.currentState.showSnackBar(snackbar);
   void login() async{
 
     final user = (await _auth
-            .createUserWithEmailAndPassword(
+            .signInWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
             .catchError((ex) {
       PlatformException thisEx = ex;
@@ -159,7 +159,7 @@ scaffoldKey.currentState.showSnackBar(snackbar);
                       return;
                     }
 
-                    if(!emailController.text.contains("@")){
+                    if(!emailController.text.contains('@')){
                       showSnackBar("Email doesn't exist");
                       return;
                     }
