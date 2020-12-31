@@ -1,18 +1,28 @@
 import 'package:citytransfers_cabs/screens/registrationpage.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 
 class LoginPage extends StatelessWidget {
+
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  void showSnackBar(String title)
+  {
+    final  snackbar = SnackBar(
+     content: Text( title, textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
+);
+scaffoldKey.currentState.showSnackBar(snackbar);
+  } 
+
   static const String id = 'login';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-var emailController = TextEditingController();
+  var emailController = TextEditingController();
 
-var passwordController = TextEditingController(); 
-
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +113,25 @@ var passwordController = TextEditingController();
               width: 300,
               height: 50.0,
               child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    // checking network  availability
+                    var connectivityResult =
+                        await Connectivity().checkConnectivity();
+                    if (connectivityResult != ConnectivityResult.mobile &&
+                        connectivityResult != ConnectivityResult.wifi) {
+                      showSnackBar("No internet connection");
+                      return;
+                    }
+
+                    if(!emailController.text.contains("@")){
+                      showSnackBar("Email doesn't exist");
+                      return;
+                    }
+                    if(passwordController.text.length < 8){
+                      showSnackBar("wrong password");
+                      return;
+                    }
+                  },
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(130),
                   ),
