@@ -1,13 +1,23 @@
+import 'package:citytransfers_cabs/screens/mainpage.dart';
 import 'package:citytransfers_cabs/screens/registrationpage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
+import 'package:flutter/services.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
 
+  static const String id = 'login';
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
   void showSnackBar(String title)
   {
     final  snackbar = SnackBar(
@@ -16,13 +26,39 @@ class LoginPage extends StatelessWidget {
 scaffoldKey.currentState.showSnackBar(snackbar);
   } 
 
-  static const String id = 'login';
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   var emailController = TextEditingController();
 
   var passwordController = TextEditingController();
+
+  void login() async{
+
+    final user = (await _auth
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text)
+            .catchError((ex) {
+      PlatformException thisEx = ex;
+      showSnackBar(thisEx.message);
+    })).user;
+
+       if(user!=null)
+       {
+         // verifying his login
+         DatabaseReference userRef  = FirebaseDatabase.instance.reference().child('users/${user.uid}');
+
+         userRef.once().then((DataSnapshot snapshot) =>{
+             
+             if(snapshot.value != null){
+               Navigator.pushNamedAndRemoveUntil(context,MainPage.id, (route) => false)
+             }
+          });
+
+       }
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +167,8 @@ scaffoldKey.currentState.showSnackBar(snackbar);
                       showSnackBar("wrong password");
                       return;
                     }
+                    login();
+
                   },
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(130),
