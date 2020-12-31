@@ -4,6 +4,7 @@ import 'package:citytransfers_cabs/widgets/widgets.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -45,8 +46,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             .catchError((ex) {
       PlatformException thisEx = ex;
       showSnackBar(thisEx.message);
-    }))
-        .user;
+    })).user;
 
     if (user != null) {
       DatabaseReference newUserRef =
@@ -198,16 +198,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
               width: 300,
               height: 50,
               child: RaisedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     // we have to  check  for the network  availability
-                    
-                    var connectivityResult = await Connectivity().checkConnectivity();
-                    if(connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi)
-                    {
+
+                    var connectivityResult =
+                        await Connectivity().checkConnectivity();
+                    if (connectivityResult != ConnectivityResult.mobile &&
+                        connectivityResult != ConnectivityResult.wifi) {
                       showSnackBar("No internet connection");
                       return;
-                    } 
-                    
+                    }
+
                     if (fullNameController.text.length < 3) {
                       showSnackBar("Provide valid name");
                       return;
