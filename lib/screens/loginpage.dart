@@ -1,9 +1,18 @@
 import 'package:citytransfers_cabs/screens/registrationpage.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 
 class LoginPage extends StatelessWidget {
   static const String id = 'login';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+var emailController = TextEditingController();
+
+var passwordController = TextEditingController(); 
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +56,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Email",
@@ -66,6 +76,7 @@ class LoginPage extends StatelessWidget {
                     height: 10,
                   ),
                   TextField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         hintText: "Password",
