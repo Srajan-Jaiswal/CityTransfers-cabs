@@ -3,6 +3,7 @@ import 'package:citytransfers_cabs/screens/mainpage.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:citytransfers_cabs/widgets/ProgressDialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 //import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
   var passwordController = TextEditingController();
 
   void registerUser() async {
+
+ // showing progess activity indicator
+    showDialog(
+    barrierDismissible: false,  
+    context: context,
+    builder: (BuildContext context) => ProgressDialog(status: 'Registering You'),
+    );
+
     final user = (await _auth
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
             .catchError((ex) {
+      // if found error
+      Navigator.pop(context);
       PlatformException thisEx = ex;
       showSnackBar(thisEx.message);
     })).user;

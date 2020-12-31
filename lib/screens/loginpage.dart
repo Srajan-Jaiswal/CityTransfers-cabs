@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:citytransfers_cabs/widgets/widgets.dart';
+import 'package:citytransfers_cabs/widgets/ProgressDialog.dart';
 import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,11 +34,20 @@ scaffoldKey.currentState.showSnackBar(snackbar);
   var passwordController = TextEditingController();
 
   void login() async{
+    // showing progess activity indicator
+    showDialog(
+    barrierDismissible: false,  
+    context: context,
+    builder: (BuildContext context) => ProgressDialog(status: 'Logging In'),
+    );
 
     final user = (await _auth
             .signInWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
             .catchError((ex) {
+
+      // Checking the error and displaying the message
+      Navigator.pop(context);        
       PlatformException thisEx = ex;
       showSnackBar(thisEx.message);
     })).user;
