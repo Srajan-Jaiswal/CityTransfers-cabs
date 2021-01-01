@@ -1,3 +1,4 @@
+import 'package:citytransfers_cabs/widgets/widgets.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -26,8 +27,12 @@ static final CameraPosition _kLake = CameraPosition(
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text("Main Page")
-      ),
+          title: appBar(context),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          brightness: Brightness.light,
+        ),
       body:Stack(
         children: <Widget>[
           GoogleMap(
@@ -38,7 +43,48 @@ static final CameraPosition _kLake = CameraPosition(
               _controller.complete(controller); // when map is created pass the instance of controller 
               mapController = controller;
             },
+            ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+                  child: Container(
+            height: 240,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
+              boxShadow:[
+                BoxShadow(
+                  color:Colors.black26,
+                  blurRadius:30.0,
+                  spreadRadius:1.0,
+                  offset: Offset(
+                    0.7,
+                    0.7,
+                  )
+                )
+              ]
+            ),
+
+            
+            child: Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,      
+          children: <Widget>[
+          SizedBox(height: 5,),
+
+          Text("Welcome Back",style: TextStyle(fontSize: 12),),
+          Text("Start your Trip",style: TextStyle(fontSize:22,fontWeight: FontWeight.w700 ), )
+
+
+              ],),
             )
+          ),
+        )
+        
+        
+        
         ]
       )
     );
