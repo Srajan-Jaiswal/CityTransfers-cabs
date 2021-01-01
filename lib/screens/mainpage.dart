@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
-
 class MainPage extends StatefulWidget {
   static const String id = 'mainpage';
 
@@ -76,7 +75,10 @@ class _MainPageState extends State<MainPage> {
                       ),
                       Text(
                         "Welcome Back !",
-                        style: TextStyle(fontSize: 12,fontWeight:FontWeight.w600,color: Colors.purple),
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.purple),
                       ),
                       Text(
                         "Start your Trip",
@@ -116,27 +118,52 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ),
                       ),
-
                       SizedBox(height: 22),
-
-                    Row(
-                      children: <Widget>[
-                        Icon(OMIcons.home,color: Colors.purple,),
-                        SizedBox(width: 12),
-                    Column(
-                      children: <Widget>[
-                        Text("Add Home",style:TextStyle(fontWeight:FontWeight.w600)),
-                        SizedBox(height: 4,),
-                        Text("     Your residential address",style:TextStyle(color:Colors.grey)),
-
-
-                      ]
-                    )
-
-
-                      ],
-                    )
-
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            OMIcons.home,
+                            color: Colors.purple,
+                          ),
+                          SizedBox(width: 12),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text("Add Home",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text("Your residential address",
+                                    style: TextStyle(color: Colors.black54)),
+                              ])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            OMIcons.workOutline,
+                            color: Colors.purple,
+                          ),
+                          SizedBox(width: 12),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text("Add Work",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text("Your Office address",
+                                    style: TextStyle(color: Colors.black54)),
+                              ])
+                        ],
+                      )
                     ],
                   ),
                 )),
