@@ -1,5 +1,6 @@
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:citytransfers_cabs/widgets/DividerLine.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -74,16 +75,16 @@ class _MainPageState extends State<MainPage> {
                         height: 5,
                       ),
                       Text(
-                        "Welcome Back !",
+                        "                                       Ride Now",
                         style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 15,
                             fontWeight: FontWeight.w600,
-                            color: Colors.purple),
+                            color: Colors.blueAccent),
                       ),
                       Text(
-                        "Start your Trip",
+                        "Daily         Rentals         Outstation",
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w700),
+                            fontSize: 22, fontWeight: FontWeight.w900),
                       ),
                       SizedBox(
                         height: 20,
@@ -111,13 +112,14 @@ class _MainPageState extends State<MainPage> {
                                 width: 10,
                               ),
                               Text(
-                                "Enter drop location",
-                                style: TextStyle(fontWeight: FontWeight.w500),
+                                "Where to ?",
+                                style: TextStyle(fontWeight: FontWeight.w700),
                               ),
                             ],
                           ),
                         ),
                       ),
+
                       SizedBox(height: 22),
                       Row(
                         children: <Widget>[
@@ -143,6 +145,8 @@ class _MainPageState extends State<MainPage> {
                       SizedBox(
                         height: 10,
                       ),
+                            DividerLine(),
+                      SizedBox(height:14),
                       Row(
                         children: <Widget>[
                           Icon(
