@@ -1,8 +1,10 @@
 import 'package:citytransfers_cabs/widgets/widgets.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
+
 
 class MainPage extends StatefulWidget {
   static const String id = 'mainpage';
@@ -48,7 +50,7 @@ class _MainPageState extends State<MainPage> {
             right: 0,
             bottom: 0,
             child: Container(
-                height: 240,
+                height: 310,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -73,8 +75,8 @@ class _MainPageState extends State<MainPage> {
                         height: 5,
                       ),
                       Text(
-                        "Welcome Back",
-                        style: TextStyle(fontSize: 12),
+                        "Welcome Back !",
+                        style: TextStyle(fontSize: 12,fontWeight:FontWeight.w600,color: Colors.purple),
                       ),
                       Text(
                         "Start your Trip",
@@ -113,7 +115,28 @@ class _MainPageState extends State<MainPage> {
                             ],
                           ),
                         ),
-                      )
+                      ),
+
+                      SizedBox(height: 22),
+
+                    Row(
+                      children: <Widget>[
+                        Icon(OMIcons.home,color: Colors.purple,),
+                        SizedBox(width: 12),
+                    Column(
+                      children: <Widget>[
+                        Text("Add Home",style:TextStyle(fontWeight:FontWeight.w600)),
+                        SizedBox(height: 4,),
+                        Text("     Your residential address",style:TextStyle(color:Colors.grey)),
+
+
+                      ]
+                    )
+
+
+                      ],
+                    )
+
                     ],
                   ),
                 )),
