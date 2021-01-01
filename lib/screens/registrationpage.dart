@@ -48,7 +48,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     context: context,
     builder: (BuildContext context) => ProgressDialog(status: 'Registering You'),
     );
-
+    // firebase service to create a user  with email and password
     final user = (await _auth
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
