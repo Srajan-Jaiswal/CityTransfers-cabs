@@ -33,7 +33,7 @@ dependencies:
   firebase_database: ^4.4.0
   connectivity: ^2.0.2
   flushbar: ^1.10.4
-
+  google_maps_flutter: ^1.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
