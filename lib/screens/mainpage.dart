@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
   Completer<GoogleMapController> _controller = Completer();
 
   GoogleMapController mapController;
-
+  GlobalKey <ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>(); 
   double mapBottomPadding = 0;
 
   static final CameraPosition _kLake = CameraPosition(
@@ -29,71 +29,68 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
+        key: scaffoldKey;
         drawer: Container(
-          width:250,
-          color: Colors.white,
-          child: Drawer(
-            child: ListView(
-              padding:EdgeInsets.all(0),
+            width: 250,
+            color: Colors.white,
+            child: Drawer(
+                child: ListView(
+              padding: EdgeInsets.all(0),
               children: <Widget>[
                 Container(
-                  height:160,
-                  color: Colors.white,
-                  child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color:Colors.white,
-                  ),
-                  child: Row(
-                    
-                    children: <Widget>[
-                      Image.asset('images/user_icon.png',height: 60,width: 60),
-                      
-                      SizedBox(width: 15,),
-
-                      Column(children: <Widget>[
-                        SizedBox(height:20),
-                        Text('Srajan Jaiswal',style: TextStyle(fontSize:20,fontFamily: 'Brand-Bold')),
-                        
-                        SizedBox(height: 5),
-                        
-                        Text('Edit Profile',style: TextStyle(fontSize:15)),
-                      ],)
-                    ],
-                  ),
-                  )),
-            
-            DividerLine(),
-           
-            SizedBox(height:10),
-
-            ListTile(
-              leading: Icon(OMIcons.cardGiftcard),
-              title: Text("Refer & Earn",style:kDrawerItemStyle),
-            ),
-            ListTile(
-              leading: Icon(OMIcons.history),
-              title: Text("Drive Bookings",style:kDrawerItemStyle),
-            ),
-            ListTile(
-              leading: Icon(OMIcons.creditCard),
-              title: Text("Payments",style:kDrawerItemStyle),
-            ),
-            ListTile(
-              leading: Icon(OMIcons.contactSupport),
-              title: Text("Support",style:kDrawerItemStyle),
-            ),
-            ListTile(
-              leading: Icon(OMIcons.info),
-              title: Text("About",style:kDrawerItemStyle),
-            )
-          
-              ], 
-              )
-          )
-        ),
+                    height: 160,
+                    color: Colors.white,
+                    child: DrawerHeader(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Image.asset('images/user_icon.png',
+                              height: 60, width: 60),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            children: <Widget>[
+                              SizedBox(height: 20),
+                              Text('Srajan Jaiswal',
+                                  style: TextStyle(
+                                      fontSize: 20, fontFamily: 'Brand-Bold')),
+                              SizedBox(height: 5),
+                              Text('Edit Profile',
+                                  style: TextStyle(fontSize: 15)),
+                            ],
+                          )
+                        ],
+                      ),
+                    )),
+                DividerLine(),
+                SizedBox(height: 10),
+                ListTile(
+                  leading: Icon(OMIcons.cardGiftcard),
+                  title: Text("Refer & Earn", style: kDrawerItemStyle),
+                ),
+                ListTile(
+                  leading: Icon(OMIcons.history),
+                  title: Text("Drive Bookings", style: kDrawerItemStyle),
+                ),
+                ListTile(
+                  leading: Icon(OMIcons.creditCard),
+                  title: Text("Payments", style: kDrawerItemStyle),
+                ),
+                ListTile(
+                  leading: Icon(OMIcons.contactSupport),
+                  title: Text("Support", style: kDrawerItemStyle),
+                ),
+                ListTile(
+                  leading: Icon(OMIcons.info),
+                  title: Text("About", style: kDrawerItemStyle),
+                )
+              ],
+            ))),
         body: Stack(children: <Widget>[
-          GoogleMap(   
+          GoogleMap(
             padding: EdgeInsets.only(bottom: mapBottomPadding),
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
@@ -103,35 +100,41 @@ class _MainPageState extends State<MainPage> {
                   controller); // when map is created pass the instance of controller
               mapController = controller;
 
-              setState((){
-                 mapBottomPadding = 340;
+              setState(() {
+                mapBottomPadding = 340;
               });
             },
           ),
-          
+
           // Menu button
 
-          Container(decoration : BoxDecoration(
-            color:Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 5.0,
-                spreadRadius: 0.5,
-                offset: Offset(
-                  0.7,
-                  0.7
-                )
-
+          Positioned(
+            top: 44,
+            left: 15,
+                      child: GestureDetector(
+                        onTap: (){
+                          scaffoldKey.currentState.openDrawer();
+                        },
+                                              child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 5.0,
+                          spreadRadius: 0.5,
+                          offset: Offset(0.7, 0.7)),
+                  ]),
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 20,
+                child: Icon(Icons.menu,color: Colors.purple,),
               ),
-            ]
-            
+            ),
+                      ),
+          ),
 
-            
-            
-             )),
-          
           Positioned(
             left: 0,
             right: 0,
@@ -206,7 +209,6 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ),
                       ),
-
                       SizedBox(height: 22),
                       Row(
                         children: <Widget>[
@@ -232,8 +234,8 @@ class _MainPageState extends State<MainPage> {
                       SizedBox(
                         height: 10,
                       ),
-                            DividerLine(),
-                      SizedBox(height:14),
+                      DividerLine(),
+                      SizedBox(height: 14),
                       Row(
                         children: <Widget>[
                           Icon(
@@ -258,11 +260,7 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                 )),
-                
           )
-        ])
-        
-        );
-        
+        ]));
   }
 }
