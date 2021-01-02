@@ -1,4 +1,4 @@
-import 'package:citytransfers_cabs/widgets/widgets.dart';
+import 'package:citytransfers_cabs/styles/styles.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:citytransfers_cabs/widgets/DividerLine.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -29,12 +29,70 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: appBar(context),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          brightness: Brightness.light,
+        
+        drawer: Container(
+          width:250,
+          color: Colors.white,
+          child: Drawer(
+            child: ListView(
+              padding:EdgeInsets.all(0),
+              children: <Widget>[
+                Container(
+                  height:160,
+                  color: Colors.white,
+                  child: DrawerHeader(
+                  decoration: BoxDecoration(
+                    color:Colors.white,
+                  ),
+                  child: Row(
+                    
+                    children: <Widget>[
+                      Image.asset('images/user_icon.png',height: 60,width: 60),
+                      
+                      SizedBox(width: 15,),
+
+                      Column(children: <Widget>[
+                        SizedBox(height:20),
+                        Text('Srajan Jaiswal',style: TextStyle(fontSize:20,fontFamily: 'Brand-Bold')),
+                        
+                        SizedBox(height: 5),
+                        
+                        Text('Edit Profile',style: TextStyle(fontSize:15)),
+                      ],)
+                    ],
+                  ),
+                  )),
+            
+            DividerLine(),
+           
+            SizedBox(height:10),
+
+            ListTile(
+              leading: Icon(OMIcons.cardGiftcard),
+              title: Text("Refer & Earn",style:kDrawerItemStyle),
+            ),
+            ListTile(
+              leading: Icon(OMIcons.history),
+              title: Text("Drive Bookings",style:kDrawerItemStyle),
+            ),
+            ListTile(
+              leading: Icon(OMIcons.creditCard),
+              title: Text("Payments",style:kDrawerItemStyle),
+            ),
+            ListTile(
+              leading: Icon(OMIcons.contactSupport),
+              title: Text("Support",style:kDrawerItemStyle),
+            ),
+            ListTile(
+              leading: Icon(OMIcons.info),
+              title: Text("About",style:kDrawerItemStyle),
+            )
+            
+            
+            
+              ], 
+              )
+          )
         ),
         body: Stack(children: <Widget>[
           GoogleMap(   
@@ -48,7 +106,7 @@ class _MainPageState extends State<MainPage> {
               mapController = controller;
 
               setState((){
-                 mapBottomPadding = 310;
+                 mapBottomPadding = 340;
               });
             },
           ),
@@ -86,7 +144,7 @@ class _MainPageState extends State<MainPage> {
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
-                            color: Colors.blueAccent),
+                            color: Colors.purpleAccent),
                       ),
                       Text(
                         "Daily        Rentals        Outstation",
