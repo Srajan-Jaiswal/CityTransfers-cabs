@@ -41,6 +41,8 @@ class MyApp extends StatelessWidget {
         LoginPage.id: (context) => LoginPage(),
         MainPage.id: (context) => MainPage(),
       },
+      //theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
     );
   }
 }

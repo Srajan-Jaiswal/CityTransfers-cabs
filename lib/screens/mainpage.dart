@@ -18,6 +18,8 @@ class _MainPageState extends State<MainPage> {
 
   GoogleMapController mapController;
 
+  double mapBottomPadding = 0;
+
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -35,7 +37,8 @@ class _MainPageState extends State<MainPage> {
           brightness: Brightness.light,
         ),
         body: Stack(children: <Widget>[
-          GoogleMap(
+          GoogleMap(   
+            padding: EdgeInsets.only(bottom: mapBottomPadding),
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kLake,
@@ -43,6 +46,10 @@ class _MainPageState extends State<MainPage> {
               _controller.complete(
                   controller); // when map is created pass the instance of controller
               mapController = controller;
+
+              setState((){
+                 mapBottomPadding = 310;
+              });
             },
           ),
           Positioned(
@@ -50,7 +57,7 @@ class _MainPageState extends State<MainPage> {
             right: 0,
             bottom: 0,
             child: Container(
-                height: 310,
+                height: 330,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -75,14 +82,14 @@ class _MainPageState extends State<MainPage> {
                         height: 5,
                       ),
                       Text(
-                        "                                       Ride Now",
+                        "                                     Ride Now",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: Colors.blueAccent),
                       ),
                       Text(
-                        "Daily         Rentals         Outstation",
+                        "Daily        Rentals        Outstation",
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w900),
                       ),
@@ -171,7 +178,11 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                 )),
+                
           )
-        ]));
+        ])
+        
+        );
+        
   }
 }
