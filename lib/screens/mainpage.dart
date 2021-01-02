@@ -87,9 +87,7 @@ class _MainPageState extends State<MainPage> {
               leading: Icon(OMIcons.info),
               title: Text("About",style:kDrawerItemStyle),
             )
-            
-            
-            
+          
               ], 
               )
           )
@@ -110,6 +108,30 @@ class _MainPageState extends State<MainPage> {
               });
             },
           ),
+          
+          // Menu button
+
+          Container(decoration : BoxDecoration(
+            color:Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 5.0,
+                spreadRadius: 0.5,
+                offset: Offset(
+                  0.7,
+                  0.7
+                )
+
+              ),
+            ]
+            
+
+            
+            
+             )),
+          
           Positioned(
             left: 0,
             right: 0,
