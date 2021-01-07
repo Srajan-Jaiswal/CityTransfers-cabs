@@ -1,5 +1,4 @@
 import 'package:citytransfers_cabs/styles/styles.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:citytransfers_cabs/widgets/DividerLine.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +14,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   Completer<GoogleMapController> _controller = Completer();
-
+  // controller for google map  
   GoogleMapController mapController;
-  GlobalKey <ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>(); 
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   double mapBottomPadding = 0;
-
+  
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -29,7 +28,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey;
+        key: scaffoldKey,
         drawer: Container(
             width: 250,
             color: Colors.white,
@@ -111,28 +110,31 @@ class _MainPageState extends State<MainPage> {
           Positioned(
             top: 44,
             left: 15,
-                      child: GestureDetector(
-                        onTap: (){
-                          scaffoldKey.currentState.openDrawer();
-                        },
-                                              child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
+            child: GestureDetector(
+              onTap: () {
+                scaffoldKey.currentState.openDrawer();
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
                           color: Colors.black26,
                           blurRadius: 5.0,
                           spreadRadius: 0.5,
                           offset: Offset(0.7, 0.7)),
-                  ]),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 20,
-                child: Icon(Icons.menu,color: Colors.purple,),
+                    ]),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 20,
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.purple,
+                  ),
+                ),
               ),
             ),
-                      ),
           ),
 
           Positioned(
@@ -162,14 +164,17 @@ class _MainPageState extends State<MainPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: 5,
+                        height: 0,
                       ),
                       Text(
-                        "                                     Ride Now",
+                        "                             Want to Ride Now ?",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
-                            color: Colors.purpleAccent),
+                            color: Colors.pink),
+                      ),
+                      SizedBox(
+                        height: 7,
                       ),
                       Text(
                         "Daily        Rentals        Outstation",
