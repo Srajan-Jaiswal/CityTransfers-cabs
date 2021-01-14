@@ -70,7 +70,7 @@ class _MainPageState extends State<MainPage> {
                               SizedBox(height: 20),
                               Text('Srajan Jaiswal',
                                   style: TextStyle(
-                                      fontSize: 20, fontFamily: 'Brand-Bold')),
+                                      fontSize: 18, fontFamily: 'Brand-Bold')),
                               SizedBox(height: 5),
                               Text('Edit Profile',
                                   style: TextStyle(fontSize: 15)),
@@ -105,17 +105,21 @@ class _MainPageState extends State<MainPage> {
             ))),
         body: Stack(children: <Widget>[
           GoogleMap(
-            padding: EdgeInsets.only(bottom: mapBottomPadding),
+            padding: EdgeInsets.only(bottom: mapBottomPadding, top: 460, right: 20, left: 20),
+            
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kLake,
+            myLocationEnabled: true,
+            zoomGesturesEnabled: true,
+            zoomControlsEnabled: true,
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(
                   controller); // when map is created pass the instance of controller
               mapController = controller;
               setPositionLocator();
               setState(() {
-                mapBottomPadding = 340;
+                mapBottomPadding = 500;
               });
             },
           ),
@@ -275,8 +279,15 @@ class _MainPageState extends State<MainPage> {
                                 Text("Your Office address",
                                     style: TextStyle(color: Colors.black54)),
                               ])
+                              
                         ],
-                      )
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      DividerLine(),
+                      
+                      
                     ],
                   ),
                 )),
