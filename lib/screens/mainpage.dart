@@ -105,7 +105,7 @@ class _MainPageState extends State<MainPage> {
             ))),
         body: Stack(children: <Widget>[
           GoogleMap(
-            padding: EdgeInsets.only(bottom: mapBottomPadding, top: 460, right: 20, left: 20),
+            padding: EdgeInsets.only(bottom: mapBottomPadding, top: 150, right: 10, left: 10),
             
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
@@ -119,7 +119,7 @@ class _MainPageState extends State<MainPage> {
               mapController = controller;
               setPositionLocator();
               setState(() {
-                mapBottomPadding = 500;
+                mapBottomPadding = 340;
               });
             },
           ),
