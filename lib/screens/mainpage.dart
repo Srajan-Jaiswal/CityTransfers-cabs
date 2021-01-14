@@ -1,5 +1,6 @@
 import 'package:citytransfers_cabs/styles/styles.dart';
 import 'package:citytransfers_cabs/widgets/DividerLine.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,11 +15,25 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   Completer<GoogleMapController> _controller = Completer();
-  // controller for google map  
+  // controller for google map
   GoogleMapController mapController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   double mapBottomPadding = 0;
-  
+
+  var geoLocator = Geolocator();
+  Position currentPosition; // current position of the  user
+  // method that gives us the current position  of the user
+  void setPositionLocator() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation);
+    currentPosition = position;
+    // Move the app along this position
+
+    LatLng pos = LatLng(position.latitude, position.longitude);
+    CameraPosition cp = new CameraPosition(target: pos, zoom: 14);
+    mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
+  }
+
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -98,7 +113,7 @@ class _MainPageState extends State<MainPage> {
               _controller.complete(
                   controller); // when map is created pass the instance of controller
               mapController = controller;
-
+              setPositionLocator();
               setState(() {
                 mapBottomPadding = 340;
               });
