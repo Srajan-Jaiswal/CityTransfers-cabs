@@ -108,7 +108,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               height: 25,
             ),
             Text(
-              'Create Account as Rider',
+              'Create Your Account',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 25,

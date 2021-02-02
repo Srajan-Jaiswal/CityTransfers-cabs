@@ -99,7 +99,7 @@ scaffoldKey.currentState.showSnackBar(snackbar);
               height: 40,
             ),
             Text(
-              'Sign In as Rider',
+              'Sign into your account',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 25,

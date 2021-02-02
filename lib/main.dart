@@ -1,4 +1,5 @@
 import 'package:citytransfers_cabs/screens/loginpage.dart';
+//import 'package:citytransfers_cabs/screens/mainpage1.dart';
 import 'package:citytransfers_cabs/screens/registrationpage.dart';
 import 'package:flutter/material.dart';
 import 'package:citytransfers_cabs/screens/mainpage.dart';
@@ -12,7 +13,7 @@ Future<void> main() async {
         ? FirebaseOptions(
             appId: '1:297855924061:ios:c6de2b69b03a5be8',
             apiKey: 'AIzaSyD_shO5mfO9lhy2TVWhfo1VUmARKlG4suk',
-            projectId: 'flutter-firebase-plugins',
+            projectId: 'flutter-firebase-plugins',  
             messagingSenderId: '297855924061',
             databaseURL: 'https://flutterfire-cd2f7.firebaseio.com',
           )
@@ -35,11 +36,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: MainPage.id,  // user gets registration  page first
+      initialRoute: LoginPage.id,  // user gets registration  page first
       routes: {
         RegistrationPage.id: (context) => RegistrationPage(),
         LoginPage.id: (context) => LoginPage(),
         MainPage.id: (context) => MainPage(),
+        //MainPage1.id: (context) => MainPage1(),
       },
       //theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),

@@ -1,5 +1,6 @@
 import 'package:citytransfers_cabs/styles/styles.dart';
 import 'package:citytransfers_cabs/widgets/DividerLine.dart';
+import 'package:citytransfers_cabs/screens/searchpage.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +106,7 @@ class _MainPageState extends State<MainPage> {
             ))),
         body: Stack(children: <Widget>[
           GoogleMap(
-            padding: EdgeInsets.only(bottom: mapBottomPadding, top: 150, right: 10, left: 10),
+            padding: EdgeInsets.only(bottom: mapBottomPadding, top: 460, right: 20, left: 20),
             
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
@@ -119,7 +120,7 @@ class _MainPageState extends State<MainPage> {
               mapController = controller;
               setPositionLocator();
               setState(() {
-                mapBottomPadding = 340;
+                mapBottomPadding = 500;
               });
             },
           ),
@@ -203,7 +204,14 @@ class _MainPageState extends State<MainPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
+
+                     GestureDetector(
+                       onTap: (){
+                         Navigator.push(context, MaterialPageRoute(
+                           builder:(context)=> SearchPage()));
+                       },
+
+                      child: Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(5),
@@ -232,7 +240,7 @@ class _MainPageState extends State<MainPage> {
                             ],
                           ),
                         ),
-                      ),
+                      )),
                       SizedBox(height: 22),
                       Row(
                         children: <Widget>[
