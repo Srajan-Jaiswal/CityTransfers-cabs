@@ -110,7 +110,7 @@ class _MainPageState extends State<MainPage> {
             
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
-            initialCameraPosition: _kLake,
+            initialCameraPosition: CameraPosition(target: LatLng(40.7128,-74.0060),zoom: 10.0),
             myLocationEnabled: true,
             zoomGesturesEnabled: true,
             zoomControlsEnabled: true,

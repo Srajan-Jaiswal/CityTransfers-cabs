@@ -64,7 +64,7 @@ class _SearchPageState extends State<SearchPage> {
     setFocus();
 
     //String address = Provider.of<AppData>(context).pickupAddress.placeName ?? '';
-    //pickupController.text = address;
+   // pickupController.text = address;
 
     return Scaffold(
 
@@ -76,7 +76,7 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: <Widget>[
           Container(
-            height: 210,
+            height: 310,
             decoration: BoxDecoration(
               color: Colors.white,
                 boxShadow: [
@@ -122,7 +122,7 @@ class _SearchPageState extends State<SearchPage> {
                     ],
                   ),
 
-                  SizedBox(height: 18,),
+                  SizedBox(height: 28,),
 
                   Row(
                     children: <Widget>[

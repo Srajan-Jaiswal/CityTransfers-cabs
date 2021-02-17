@@ -27,6 +27,7 @@ Future<void> main() async {
   );
   runApp(MyApp());
 }
+// This is a stateless widget
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
